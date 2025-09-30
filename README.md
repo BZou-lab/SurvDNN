@@ -1,6 +1,6 @@
 # SurvDNN
 
-R package for paper: Enhanced Deep Neural Network and Feature Importance Test for Complex Survival Data
+R package for paper: An Interpretable Deep Learning Framework for Biomarker Discovery in Complex Disease Survival Outcomes
 
 ## Installation 
 - System requirement: Rtools (Windows); None (MacOS/Linux)
