@@ -9,7 +9,7 @@ R package for paper: Stable deep survival learning with feature-level inference 
 
 ## Check Package Dependency
 
-Check package dependancy. Please use the following code to check whether dependencies are successfully loaded.
+Check package dependency. Please use the following code to check whether dependencies are successfully loaded.
 
 Specifically, for DeepSurv and DeepHit, we use methods implemented in the existing package ```survivalmodels```. To use this package, appropriate version of Python should be installed.
 
