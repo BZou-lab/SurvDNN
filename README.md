@@ -1,13 +1,13 @@
 # SurvDNN
 
-R package for paper: An Interpretable Deep Learning Framework for Biomarker Discovery in Complex Disease Survival Outcomes
+R package for paper: Stable deep survival learning with feature-level inference for biomarker discovery
 
 ## Installation 
 - System requirement: Rtools (Windows); None (MacOS/Linux)
 - In R: ```devtools::install_github("ShiyuWAN3/SurvDNN)" ```
 - For MAC user, if you  can not find *libquadmath.dylib* or similar files, you need to install gcc and gfortran first, and then copy and move the folder ```/usr/local/gfortran/lib``` to ```/usr/local/lib```
 
-## Check Package Dependancy
+## Check Package Dependency
 
 Check package dependancy. Please use the following code to check whether dependencies are successfully loaded.
 
@@ -172,27 +172,6 @@ PermRSF = permfit_survival(train = Train_Scov,n_perm =100,method = "random_fores
 ``` r
 Perm_cox_Scov = permfit_survival(train = Train_Scov,n_perm =100,method = "survival_cox",
                 k_fold = 5) %>% try()
-```
-
-## PermFIT for DeepHit
-
-``` r
-PermDeepHit = permfit_survival(train = Train_Scov,n_perm =100,method = "DeepHit",
-                            k_fold = 5,activation = "relu",
-                            frac = 0.2,early_stopping = T,
-                            num_nodes = c(50L, 40L, 30L,20L),epochs = 1000,
-                            batch_size = 50) %>% try()
-```
-
-## PermFIT for DeepSurv
-
-
-``` r 
-PermDeepSurv = permfit_survival(train = Train_Scov,n_perm =100,method = "DeepSurv",
-                            k_fold = 5,activation = "relu",
-                            frac = 0.2,early_stopping = T,
-                            num_nodes = c(50L, 40L, 30L,20L),epochs = 1000,
-                            batch_size = 50) %>% try()
 ```
 
 ## Fit SurvDNN Model and Predict Relative Risk Using This Model
