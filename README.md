@@ -1,25 +1,23 @@
 # SurvDNN
 
-R package for paper: Stable deep survival learning with feature-level inference for biomarker discovery
+R package for paper: Stable deep survival learning with feature-level inference for clinical biomarker discovery
 
 ## Installation 
 - System requirement: Rtools (Windows); None (MacOS/Linux)
 - In R: ```devtools::install_github("ShiyuWAN3/SurvDNN)" ```
-- For MAC user, if you  can not find *libquadmath.dylib* or similar files, you need to install gcc and gfortran first, and then copy and move the folder ```/usr/local/gfortran/lib``` to ```/usr/local/lib```
+- For MAC users, if you cannot find *libquadmath.dylib* or similar files, you need to install gcc and gfortran first, and then copy and move the folder ```/usr/local/gfortran/lib``` to ```/usr/local/lib```
 
 ## Check Package Dependency
 
 Check package dependency. Please use the following code to check whether dependencies are successfully loaded.
 
-Specifically, for DeepSurv and DeepHit, we use methods implemented in the existing package ```survivalmodels```. To use this package, appropriate version of Python should be installed.
-
 ``` r
 check_dependency()
 ```
 
-## A Toy Simulation for survival outcome with Geompertz Baseline Hazard
+## An example simulation for survival outcomes with Geompertz Baseline Hazard
 
-Firstly, using the following code to simulate a survival dataset:
+First, use the following code to simulate a survival dataset:
 
 ``` r
 rm(list = ls())
