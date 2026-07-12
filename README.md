@@ -1,21 +1,37 @@
 # SurvDNN
 
-R package for paper: Stable deep survival learning with feature-level inference for clinical biomarker discovery
+SurvDNN is an R package for fitting stable deep survival models and testing feature-level importance in clinical biomarker discovery. It accompanies the paper *Stable deep survival learning with feature-level inference for clinical biomarker discovery*.
 
-## Installation 
-- System requirement: Rtools (Windows); None (MacOS/Linux)
-- In R: ```devtools::install_github("ShiyuWAN3/SurvDNN)" ```
-- For MAC users, if you cannot find *libquadmath.dylib* or similar files, you need to install gcc and gfortran first, and then copy and move the folder ```/usr/local/gfortran/lib``` to ```/usr/local/lib```
+Code used to reproduce the paper's results is available in the `paper/` subfolder.
+
+## Installation
+
+System requirements: Windows users need Rtools. No additional system tools are required for a standard macOS or Linux installation.
+
+Install the package from GitHub in R:
+
+``` r
+devtools::install_github("BZou-lab/SurvDNN")
+```
+
+Alternatively, you can install it with `pak`:
+
+``` r
+install.packages("pak")
+pak::pak("BZou-lab/SurvDNN")
+```
+
+For macOS users, if R reports that *libquadmath.dylib* or a similar file is missing, install gcc and gfortran first. Then copy the folder `/usr/local/gfortran/lib` to `/usr/local/lib`.
 
 ## Check Package Dependency
 
-Check package dependency. Please use the following code to check whether dependencies are successfully loaded.
+Please use the following code to check whether dependencies are successfully loaded:
 
 ``` r
 check_dependency()
 ```
 
-## An example simulation for survival outcomes with Geompertz Baseline Hazard
+## An example simulation for survival outcomes with Gompertz Baseline Hazard
 
 First, use the following code to simulate a survival dataset:
 
@@ -27,19 +43,19 @@ library(survival)
 library(tidyverse)
 library(simsurv)
 
-# Sample Size, Number of Features and correlation among features
+# Sample size, number of features, and correlation among features
 N = 1200
 N_train = 1000
 p_block = 10
 p = 50
 rho = 0.5
 
-# Survival Simulation Parameter
+# Survival simulation parameters
 alpha.t = 3
 lambda.t = 0.00002
 alpha.c = 1.5
 
-# Simulate Continuous Feartures
+# Simulate Continuous Features
 
 X_Scov = data.frame(mvrnorm(n=N,mu=rep(0,p_block),
                               Sigma = (1-rho)*diag(p_block)+rho),
@@ -66,7 +82,7 @@ colnames(Z_Scov) = paste("Z",1:(p_block),sep = "")
 # Simulate Full Feature Matrix
 C_Scov = cbind(X_Scov,Z_Scov)
 
-# Significant variable: Z1,Z2,X1,X11,X21,X31
+# Significant variables: Z1, Z2, X1, X11, X21, X31
   
 sims_beta = c(1,2,0.5,1,rep(0,p-1))
   
@@ -75,7 +91,7 @@ names(sims_beta) = c("Z1","X1Z2",
                     paste("X",2*p_block+1,"X",3*p_block+1,sep = ""),
                     paste("X",1:(4*p_block),sep = ""),paste("Z",2:p_block,sep = ""))
   
-# Generate Non-Linear Term
+# Generate non-linear terms
 
 C_Scov[,"X1Z2"] = C_Scov[,"X1"]*C_Scov[,"Z2"]
 C_Scov[,paste("X",p_block+1,"Square",sep = "")] = (C_Scov[,paste("X",p_block+1,sep = "")])^2
@@ -92,9 +108,7 @@ C_Scov$id=1:nrow(C_Scov)
 # This is the Dataset Containing True Survival Time and Features
 Full_Scov = left_join(Y_Scov,C_Scov,by = "id")
 
-# Generate Censor Distribution
-
-# Censor Distribution
+# Generate censoring distribution
 
 theta = 3.5
 
@@ -151,7 +165,7 @@ PermSurvDNN = permfit_survival(train = Train_Scov,n_perm =100,method = "ensemble
 View(PermSurvDNN@importance)
 ```
 
-## PermFIT for XGboost
+## PermFIT for XGBoost
 
 ``` r
 PermXGboost = permfit_survival(train = Train_Scov,n_perm =100,method = "Xgboost",
