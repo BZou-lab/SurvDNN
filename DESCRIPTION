@@ -4,13 +4,13 @@ Title: An Interpretable Deep Learning Framework for Biomarker Discovery
         in Complex Disease Survival Outcomes
 Version: 0.1.0
 Author: Shiyu Wan
-Maintainer: Shiyu Wan <shiyu31@unc.edu>
-Description: Code for Enhanced Deep Neural Network and Feature Importance Test for Complex Survival Data.
+Maintainer: Shiyu Wan <shiyu31@uw.edu>
+Description: Code for Stable deep survival learning with feature-level inference for clinical biomarker discovery.
     Implemented a permutation-based feature importance test for common machine-learning models, including RSF, XGBoost, DeepSurv, and DeepHit. Included SurvDNN, a Cox-based survival DNN augmented by bootstrap aggregating and filtering method.
 Imports: survival, MASS, tidyverse, simsurv, deepTL, survivalmodels,
         randomForestSRC, survivalsvm, reticulate, Hmisc, xgboost,
         timeROC
-Remotes: ShiyuWAN3/deepTL
+Remotes: SkadiEye/deepTL
 Depends: survival, MASS, tidyverse, simsurv, deepTL, survivalmodels,
         randomForestSRC, survivalsvm, reticulate, Hmisc, xgboost,
         timeROC
