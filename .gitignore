@@ -2,3 +2,24 @@
 .Rhistory
 .RData
 .Ruserdata
+
+# Paper data and generated outputs
+paper/data/*
+!paper/data/.gitkeep
+
+paper/results/figures/*
+!paper/results/figures/.gitkeep
+
+paper/results/tables/*
+!paper/results/tables/.gitkeep
+
+# Raw/intermediate analysis files
+paper/**/*.rds
+paper/**/*.Rds
+paper/**/*.RData
+paper/**/*.RDataTmp
+paper/**/*.Rda
+paper/**/*.csv
+paper/**/*.tsv
+paper/**/*.xlsx
+paper/**/*.xls
