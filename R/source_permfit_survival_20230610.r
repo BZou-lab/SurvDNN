@@ -181,9 +181,33 @@ mod_permfit <- function(method, model.type, object, ...) {
     } else if (method == "Xgboost"){
       label_train = ifelse(object@e == 1,object@y,-object@y)
       df_train_xg = xgboost::xgb.DMatrix(data = as.matrix(object@x),label = label_train)
-      mod =do.call(xgboost::xgboost,
-                   appendArg(appendArg(list(...),"data",df_train_xg,TRUE),
-                             "objective","survival:cox",TRUE))
+      xgb_args = list(...)
+      xgb_params = xgb_args$params
+      if (is.null(xgb_params)) {
+        xgb_params = list()
+      }
+      if (!is.null(xgb_params$nrounds)) {
+        if (is.null(xgb_args$nrounds)) {
+          xgb_args$nrounds = xgb_params$nrounds
+        }
+        xgb_params$nrounds = NULL
+      }
+      if (is.null(xgb_args$nrounds)) {
+        xgb_args$nrounds = 100L
+      }
+      if (!is.null(xgb_args$objective)) {
+        xgb_args$objective = NULL
+      }
+      xgb_train_args = names(formals(xgboost::xgb.train))
+      xgb_param_args = setdiff(names(xgb_args), xgb_train_args)
+      for (xgb_arg in xgb_param_args) {
+        xgb_params[[xgb_arg]] = xgb_args[[xgb_arg]]
+        xgb_args[[xgb_arg]] = NULL
+      }
+      xgb_params$objective = "survival:cox"
+      xgb_args$params = xgb_params
+      mod =do.call(xgboost::xgb.train,
+                   appendArg(xgb_args,"data",df_train_xg,TRUE))
     } else if (method == "Survival_SVM"){
       mod <- do.call(survivalsvm::survivalsvm,
                      appendArg(appendArg(list(...), "formula", Surv(y, e) ~ ., TRUE),
@@ -307,7 +331,7 @@ predict_mod_permfit <- function(mod, object, method, model.type) {
       pred = predict(mod, data.frame(x = object@x),type = "risk")
       return(list(pred,log(pred)))
     } else if (method == "Xgboost"){
-      pred = predict(mod,newdata = object@x,type = "risk")
+      pred = predict(mod,newdata = object@x)
       return(list(pred,log(pred)))
     }
   } else {
