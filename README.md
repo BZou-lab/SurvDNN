@@ -1,6 +1,6 @@
-# SurvDNN
+# SurvDeepFIT
 
-SurvDNN is an R package for fitting stable deep survival models and testing feature-level importance in clinical biomarker discovery. It accompanies the paper *Stable deep survival learning with feature-level inference for clinical biomarker discovery*.
+SurvDeepFIT is an R package for fitting stable deep survival models and performing feature-level inference in clinical biomarker discovery. It accompanies the paper *Stable deep survival learning with feature-level inference for clinical biomarker discovery*.
 
 Code used to reproduce the paper's results is available in the `paper/` subfolder.
 
@@ -11,19 +11,19 @@ System requirements: Windows users need Rtools. No additional system tools are r
 Install the package from GitHub in R:
 
 ``` r
-devtools::install_github("BZou-lab/SurvDNN")
+devtools::install_github("BZou-lab/SurvDeepFIT")
 ```
 
 Alternatively, you can install it with `pak`:
 
 ``` r
 install.packages("pak")
-pak::pak("BZou-lab/SurvDNN")
+pak::pak("BZou-lab/SurvDeepFIT")
 ```
 
 For macOS users, if R reports that *libquadmath.dylib* or a similar file is missing, install gcc and gfortran first. Then copy the folder `/usr/local/gfortran/lib` to `/usr/local/lib`.
 
-## Check Package Dependency
+## Check Package Dependencies
 
 Please use the following code to check whether dependencies are successfully loaded:
 
@@ -31,13 +31,13 @@ Please use the following code to check whether dependencies are successfully loa
 check_dependency()
 ```
 
-## An example simulation for survival outcomes with Gompertz Baseline Hazard
+## Example Simulation with a Gompertz Baseline Hazard
 
 First, use the following code to simulate a survival dataset:
 
 ``` r
 rm(list = ls())
-suppressMessages(library(SurvDNN))
+suppressMessages(library(SurvDeepFIT))
 library(MASS)
 library(survival)
 library(tidyverse)
@@ -148,7 +148,7 @@ Valid_Scov = importDnnetSurv(x = Full_Scov[(N_train+1):N,
                              e = Full_Scov$status1[(N_train+1):N])
 ```
 
-## Define the Hyperparameters Used for SurvDNN
+## Define the Hyperparameters Used for SurvDeepFIT
 
 ``` r
 esCtrl <- list(n.hidden = c(50, 40, 30, 20), activate = "relu",
@@ -156,13 +156,13 @@ esCtrl <- list(n.hidden = c(50, 40, 30, 20), activate = "relu",
                n.epoch = 1000, learning.rate.adaptive = "adam", plot = FALSE)
 ```
 
-## PermFIT for SurvDNN
+## PermFIT for SurvDeepFIT
 
 ``` r
-PermSurvDNN = permfit_survival(train = Train_Scov,n_perm =100,method = "ensemble_dnnet",
+PermSurvDeepFIT = permfit_survival(train = Train_Scov,n_perm =100,method = "ensemble_dnnet",
             k_fold = 5,
             n.ensemble = 100, esCtrl = esCtrl) %>% try()
-View(PermSurvDNN@importance)
+View(PermSurvDeepFIT@importance)
 ```
 
 ## PermFIT for XGBoost
@@ -186,22 +186,22 @@ Perm_cox_Scov = permfit_survival(train = Train_Scov,n_perm =100,method = "surviv
                 k_fold = 5) %>% try()
 ```
 
-## Fit SurvDNN Model and Predict Relative Risk Using This Model
+## Fit SurvDeepFIT Model and Predict Relative Risk Using This Model
 
 ``` r 
-SurvDNN = mod_permfit(method = "ensemble_dnnet",model.type = "survival",
+SurvDeepFIT_model = mod_permfit(method = "ensemble_dnnet",model.type = "survival",
                             object = Train_Scov,
                             n.ensemble = 100, esCtrl = esCtrl) %>% try()
 
-centralized_model = model.centralize(SurvDNN,Train_Scov) %>% try()
+centralized_model = model.centralize(SurvDeepFIT_model,Train_Scov) %>% try()
 
 # Predict Relative Risk Using the Test Dataset
 
-Predict_SurvDNN = predict(centralized_model[[1]],Valid_Scov@x) %>% try() 
+Predict_SurvDeepFIT = predict(centralized_model[[1]],Valid_Scov@x) %>% try() 
 
 # Calculate the C-index
 
-Cindex= try(1 - rcorr.cens(Predict_SurvDNN,Surv(Valid_Scov@y,Valid_Scov@e))[1])
+Cindex= try(1 - rcorr.cens(Predict_SurvDeepFIT,Surv(Valid_Scov@y,Valid_Scov@e))[1])
 ```
 
 ## Predict Survival Probability

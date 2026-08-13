@@ -44,7 +44,7 @@ PainData_valid = importDnnetSurv(x = Pvalid[,c(1:20,23:27)],
 # 1.Load Functions 
 
 #source("/nas/longleaf/home/{onyen}/R-Code/source_permfit_survival_20230610.R")
-library(SurvDNN)
+library(SurvDeepFIT)
 predict_surv_df_cox = function (centralized_model, test_object, time_point = NULL) 
 {
   mod = centralized_model[[1]]

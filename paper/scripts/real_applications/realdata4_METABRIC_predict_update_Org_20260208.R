@@ -40,7 +40,7 @@ PainData_valid = importDnnetSurv(x = Pvalid[,3:71],
 
 #########################
 
-library(SurvDNN)
+library(SurvDeepFIT)
 
 predict_surv_df_cox = function (centralized_model, test_object, time_point = NULL) 
 {

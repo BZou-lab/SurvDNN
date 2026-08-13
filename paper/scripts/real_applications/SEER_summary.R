@@ -573,7 +573,7 @@ make_seer_risk_group_latex <- function(summary_table) {
     "\\begin{table}[!htbp]",
     "\\centering",
     "\\small",
-    "\\caption{SEER-HCC validation cohort characteristics by SurvDNN risk group}",
+    "\\caption{SEER-HCC validation cohort characteristics by SurvDeepFIT risk group}",
     "\\begin{tabular}{llll}",
     "\\toprule",
     paste0(

@@ -23,17 +23,17 @@
 #if (!require("pheatmap")){install.packages("pheatmap")}else{library(pheatmap)}
 #library(pheatmap)
 
-#' Title Check SurvDNN's dependency, especially for DeepSurv and DeepHit
+#' Title Check SurvDeepFIT's dependency, especially for DeepSurv and DeepHit
 #'
-#' @param package The name of the package to check dependencies for. Default is "SurvDNN".
+#' @param package The name of the package to check dependencies for. Default is "SurvDeepFIT".
 #' @param use_condaenv The name of the Conda environment to use, as specified by reticulate. Can be changed to a specific Conda environment.
 #'
-#' @return This function checks the dependencies for SurvDNN, DeepSurv, DeepHit, and other related machine learning methods.
+#' @return This function checks the dependencies for SurvDeepFIT, DeepSurv, DeepHit, and other related machine learning methods.
 #' @export
 #' @author Shiyu Wan
 #'
 #' @examples check_dependency()
-check_dependency = function(package = "SurvDNN",use_condaenv = "r-reticulate"){
+check_dependency = function(package = "SurvDeepFIT",use_condaenv = "r-reticulate"){
   if (!require("survival")){install.packages("survival")}else{library(survival)}
   #library(survival)
   if (!require("tidyverse")){install.packages("tidyverse")}else{library(tidyverse)}
@@ -42,7 +42,7 @@ check_dependency = function(package = "SurvDNN",use_condaenv = "r-reticulate"){
   #library(simsurv)
   if (!require("MASS")){install.packages("MASS")}else{library(MASS)}
   #library(MASS)
-  if (!require("deepTL")){devtools::install_github("SkadiEye/deepTL")}else{library(deepTL); print("PermSurvDNN's dependencies successfully loaded. Congratulations!")}
+  if (!require("deepTL")){devtools::install_github("SkadiEye/deepTL")}else{library(deepTL); print("SurvDeepFIT's dependencies successfully loaded. Congratulations!")}
   #library(deepTL)
   if (!require("survivalmodels")){install.packages("survivalmodels")}else{library(survivalmodels)}
   #library(survivalmodels)
@@ -143,7 +143,7 @@ loglik_coxph = function(Status,Times,f_hat_y){
 #' - "Xgboost" for XGBoost;
 #' - "Survival_SVM" for Survival Support Vector Machine;
 #' - "lasso" for Lasso-Cox;
-#' - "ensemble_dnnet" for SurvDNN.
+#' - "ensemble_dnnet" for SurvDeepFIT.
 #'
 #'
 #' @param model.type Default is "survival" for survival data.
@@ -381,7 +381,7 @@ timedAUC = function(Status,Times,f_hat_y){
 #' @param object Validation dataset, a dnnetSurvInput object created by deepTL::importDnnetSurv().
 #' @param y_max Inner upper boundary for y in binary classification; can be ignored when model.type is "survival".
 #' @param y_min Inner lower boundary for y in binary classification; can be ignored when model.type is "survival".
-#' @param y_hatcoxl A numeric vector of patients' survival risk predictions returned by Cox-related models, e.g., Cox, SurvDNN, XGBoost.
+#' @param y_hatcoxl A numeric vector of patients' survival risk predictions returned by Cox-related models, e.g., Cox, SurvDeepFIT, XGBoost.
 #' @param y_hat0coxl A numeric vector of patients' survival risk predictions returned by Cox-related models based on permuted data.
 #'
 #' @return A numeric vector consisting of differences in C-index, Cox's partial log-likelihood, and average time-dependent AUC, based on observed and permuted data.
@@ -411,7 +411,7 @@ log_lik_diff <- function(model.type, y_hat, y_hat0, object,
 
 ##### Update 07/03/2024: To solve the identifiability issue, relative risk will be centered around zero.
 
-#' Title Centralizing the Relative Risk Prediction of SurvDNN Around 0
+#' Title Centralizing the Relative Risk Prediction of SurvDeepFIT Around 0
 #'
 #' @param mod A fitted dnnet or dnnetEnsemble object.
 #' @param object The training set corresponding to the above model.
@@ -516,7 +516,7 @@ predict_surv_df = function(centralized_model,test_object,time_point = NULL){
 #' - "Xgboost" for XGBoost;
 #' - "Survival_SVM" for Survival Support Vector Machine;
 #' - "lasso" for Lasso-Cox;
-#' - "ensemble_dnnet" for SurvDNN.
+#' - "ensemble_dnnet" for SurvDeepFIT.
 #' @param shuffle If NULL, the data will be shuffled for cross-fitting; if random shuffle is not desired, provide a vector of numbers for cross-fitting indices.
 #' @param ... Additional parameters passed to each method.
 #'

@@ -10,10 +10,10 @@ summary_s3 = readRDS("results/SimulationS2_result_IBS.rds")
 # Colors
 # ============================================================================
 
-base_method_levels <- c("SurvDNN", "Cox", "AFT", "RSF", "XGBoost")
+base_method_levels <- c("SurvDeepFIT", "Cox", "AFT", "RSF", "XGBoost")
 
 method_levels <- c(
-  "SurvDNN",
+  "SurvDeepFIT",
   "Cox",
   "AFT",
   "RSF",
@@ -21,7 +21,7 @@ method_levels <- c(
 )
 
 method_colors <- c(
-  "SurvDNN" = "#D55E00",  
+  "SurvDeepFIT" = "#D55E00",  
   "Cox"     = "#56B4E9",  
   "AFT"     = "#009E73",  
   "RSF"     = "#E69F00",  
@@ -29,7 +29,7 @@ method_colors <- c(
 )
 
 method_labels <- c(
-  "SurvDNN" = "SurvDNN",
+  "SurvDeepFIT" = "SurvDeepFIT",
   "Cox" = "Cox",
   "AFT" = "AFT",
   "RSF" = "RSF",

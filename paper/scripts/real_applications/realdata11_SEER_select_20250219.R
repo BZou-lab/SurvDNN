@@ -73,7 +73,7 @@ if (trainN %in%
 }
 
 ########### Load Package and functions ###########
-library(SurvDNN)
+library(SurvDeepFIT)
 BS_t = function(t_index,surv_df,valid = PainData_valid){
   t_i = as.numeric(colnames(surv_df)[t_index])
   death_vector = valid@e

@@ -2,7 +2,7 @@
 % Please edit documentation in R/source_permfit_survival_20230610.r
 \name{model.centralize}
 \alias{model.centralize}
-\title{Title Centralizing the Relative Risk Prediction of SurvDNN Around 0}
+\title{Title Centralizing the Relative Risk Prediction of SurvDeepFIT Around 0}
 \usage{
 model.centralize(mod, object)
 }
@@ -15,5 +15,5 @@ model.centralize(mod, object)
 A centralized model with the last bias updated, and the event times of the training set.
 }
 \description{
-Title Centralizing the Relative Risk Prediction of SurvDNN Around 0
+Title Centralizing the Relative Risk Prediction of SurvDeepFIT Around 0
 }

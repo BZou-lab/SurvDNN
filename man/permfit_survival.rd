@@ -37,7 +37,7 @@ permfit_survival(
 - "Xgboost" for XGBoost;
 - "Survival_SVM" for Survival Support Vector Machine;
 - "lasso" for Lasso-Cox;
-- "ensemble_dnnet" for SurvDNN.}
+- "ensemble_dnnet" for SurvDeepFIT.}
 
 \item{shuffle}{If NULL, the data will be shuffled for cross-fitting; if random shuffle is not desired, provide a vector of numbers for cross-fitting indices.}
 

@@ -507,7 +507,7 @@ make_metabric_risk_group_latex <- function(summary_table) {
   lines <- c(
     "\\begin{table}[!htbp]",
     "\\centering",
-    "\\caption{METABRIC validation cohort characteristics by SurvDNN risk group}",
+    "\\caption{METABRIC validation cohort characteristics by SurvDeepFIT risk group}",
     "\\begin{tabular}{llll}",
     "\\toprule",
     paste0(

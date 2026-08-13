@@ -13,10 +13,10 @@ dir.create("results/figures", showWarnings = FALSE, recursive = TRUE)
 # Colors and ordering
 # ============================================================================
 
-base_method_levels <- c("SurvDNN", "Cox", "AFT", "RSF", "XGBoost")
+base_method_levels <- c("SurvDeepFIT", "Cox", "AFT", "RSF", "XGBoost")
 
 method_levels <- c(
-  "SurvDNN",
+  "SurvDeepFIT",
   "Cox",
   "AFT",
   "RSF",
@@ -24,7 +24,7 @@ method_levels <- c(
 )
 
 method_colors <- c(
-  "SurvDNN" = "#D55E00",  
+  "SurvDeepFIT" = "#D55E00",  
   "Cox"     = "#56B4E9",  
   "AFT"     = "#009E73",  
   "RSF"     = "#E69F00",  
@@ -32,7 +32,7 @@ method_colors <- c(
 )
 
 method_labels <- c(
-  "SurvDNN"  = "SurvDNN",
+  "SurvDeepFIT"  = "SurvDeepFIT",
   "Cox"      = "Cox",
   "AFT"      = "AFT",
   "RSF"      = "RSF",
@@ -127,10 +127,10 @@ P3
  # Colors and ordering
  # ============================================================================
  
- base_method_levels <- c("SurvDNN", "Cox", "AFT", "RSF", "XGBoost")
+ base_method_levels <- c("SurvDeepFIT", "Cox", "AFT", "RSF", "XGBoost")
  
  method_levels <- c(
-   "SurvDNN",
+   "SurvDeepFIT",
    "Cox",
    "AFT",
    "RSF",
@@ -138,7 +138,7 @@ P3
  )
  
  method_colors <- c(
-   "SurvDNN" = "#D55E00",  
+   "SurvDeepFIT" = "#D55E00",  
    "Cox"     = "#56B4E9",  
    "AFT"     = "#009E73",  
    "RSF"     = "#E69F00",  
@@ -146,7 +146,7 @@ P3
  )
  
  method_labels <- c(
-   "SurvDNN"  = "SurvDNN",
+   "SurvDeepFIT"  = "SurvDeepFIT",
    "Cox"      = "Cox",
    "AFT"      = "AFT",
    "RSF"      = "RSF",

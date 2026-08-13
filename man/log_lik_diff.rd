@@ -28,7 +28,7 @@ log_lik_diff(
 
 \item{y_min}{Inner lower boundary for y in binary classification; can be ignored when model.type is "survival".}
 
-\item{y_hatcoxl}{A numeric vector of patients' survival risk predictions returned by Cox-related models, e.g., Cox, SurvDNN, XGBoost.}
+\item{y_hatcoxl}{A numeric vector of patients' survival risk predictions returned by Cox-related models, e.g., Cox, SurvDeepFIT, XGBoost.}
 
 \item{y_hat0coxl}{A numeric vector of patients' survival risk predictions returned by Cox-related models based on permuted data.}
 }

@@ -12,7 +12,7 @@ make_seer_heatmap <- function(dfdraw) {
   colnames(dfdraw)[colnames(dfdraw) == "COX"] <- "Cox"
   
   ## Reorder methods
-  method_order <- c("SurvDNN", "Cox", "AFT", "RSF", "XGBoost")
+  method_order <- c("SurvDeepFIT", "Cox", "AFT", "RSF", "XGBoost")
   dfdraw <- dfdraw[, method_order, drop = FALSE]
   
   ## Rename features
@@ -114,7 +114,7 @@ make_metabric_heatmap <- function(dfdraw) {
   colnames(dfdraw)[colnames(dfdraw) == "COX"] <- "Cox"
   
   ## Reorder methods
-  method_order <- c("SurvDNN", "Cox", "AFT", "RSF", "XGBoost")
+  method_order <- c("SurvDeepFIT", "Cox", "AFT", "RSF", "XGBoost")
   dfdraw <- dfdraw[, method_order, drop = FALSE]
   
   ## Rename features

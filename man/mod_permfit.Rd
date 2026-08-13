@@ -16,7 +16,7 @@ mod_permfit(method, model.type, object, ...)
 - "Xgboost" for XGBoost;
 - "Survival_SVM" for Survival Support Vector Machine;
 - "lasso" for Lasso-Cox;
-- "ensemble_dnnet" for SurvDNN.}
+- "ensemble_dnnet" for SurvDeepFIT.}
 
 \item{model.type}{Default is "survival" for survival data.}
 

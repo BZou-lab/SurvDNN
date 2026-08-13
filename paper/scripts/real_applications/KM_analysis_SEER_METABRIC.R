@@ -44,7 +44,7 @@ SEER_data_valid = importDnnetSurv(x = Pvalid[,c(1:20,23:27)],
                                   y = Pvalid[,"OS_MONTHS"],
                                   e = Pvalid[,"OS_STATUS"])
 
-### Risk stratification (using SurvDNN with selected features only)
+### Risk stratification (using SurvDeepFIT with selected features only)
 data_selected = data.frame(y = SEER_data_valid@y,
                       e = SEER_data_valid@e,
                       strata = ifelse(pred_selected[[1]] >= median(pred_selected[[1]]),"High","Low")) %>%
